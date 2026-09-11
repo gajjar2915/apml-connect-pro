@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>APML Connect Pro - Complete Installation & Deployment Guide</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  .header {
+    border-bottom: 3px solid #10b981;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  .badge {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(52, 211, 153, 0.2) 100%);
+    color: #047857;
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+  }
+  h2 {
+    font-size: 16px;
+    color: #0f172a;
+    border-left: 4px solid #10b981;
+    padding-left: 10px;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  h3 {
+    font-size: 14px;
+    color: #334155;
+    margin-top: 15px;
+    margin-bottom: 8px;
+  }
+  p, li {
+    font-size: 12px;
+  }
+  ol, ul {
+    padding-left: 20px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  code, pre {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  pre {
+    display: block;
+    padding: 10px 14px;
+    background: #0f172a;
+    color: #34d399;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin: 8px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 11px;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 700;
+  }
+  tr:nth-child(even) {
+    background: #f8fafc;
+  }
+  .info-box {
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 11px;
+  }
+  .footer {
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 10px;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1 class="title">✚ APML Connect Pro</h1>
+    <div class="subtitle">Complete Installation, Deployment & Operations Guide</div>
+  </div>
+  <div class="badge">Official Setup Manual v1.0</div>
+</div>
+
+<div class="info-box">
+  <strong>Note:</strong> APML Connect Pro is a containerized multi-terminal SaaS healthcare platform designed to run seamless local Wi-Fi peer-to-peer sync across clinic desktops, laptops, iPads, and mobile devices.
+</div>
+
+<h2>Phase 1: System Requirements & Prerequisites</h2>
+<ul>
+  <li><strong>Central Host Server PC</strong>: Windows 10/11 (64-bit), 8 GB RAM minimum (16 GB recommended), 10 GB free storage.</li>
+  <li><strong>Prerequisite Software</strong>: Docker Desktop for Windows (with WSL 2 Backend enabled).</li>
+  <li><strong>Network Requirements</strong>: Local Wi-Fi Router or LAN connection connecting host server and client workstations.</li>
+</ul>
+
+<h3>Step 1: Install & Verify Docker Desktop</h3>
+<ol>
+  <li>Download Docker Desktop from <code>https://www.docker.com/products/docker-desktop/</code></li>
+  <li>Run <code>Docker Desktop Installer.exe</code> and check the box <strong>"Use WSL 2 instead of Hyper-V"</strong>.</li>
+  <li>Restart your computer when installation completes.</li>
+  <li>Launch Docker Desktop and wait until the whale icon in the system tray turns <strong>solid green</strong>.</li>
+</ol>
+
+<h2>Phase 2: Windows Firewall Configuration (Required for Wi-Fi Network Access)</h2>
+<p>To enable other laptops, iPads, and mobile devices on your Wi-Fi network to connect to this server:</p>
+<ol>
+  <li>Open Start Menu & Search for <strong>"Windows Defender Firewall with Advanced Security"</strong>.</li>
+  <li>Click <strong>Inbound Rules</strong> in the left pane &rarr; Click <strong>New Rule...</strong> in the right pane.</li>
+  <li>Select <strong>Port</strong> &rarr; Click Next &rarr; Select <strong>TCP</strong>.</li>
+  <li>In <strong>Specific local ports</strong>, enter: <code>3001, 3002, 3003, 5005</code> &rarr; Click Next.</li>
+  <li>Select <strong>Allow the connection</strong> &rarr; Keep Domain, Private, Public checked &rarr; Click Next.</li>
+  <li>Name the rule <code>APML Connect Pro Server</code> &rarr; Click Finish.</li>
+</ol>
+
+<h2>Phase 3: Central Server Launch & Deployment</h2>
+<ol>
+  <li>Open Command Prompt or PowerShell in the setup directory:
+    <pre>cd d:\parvg\OneDrive\Desktop\reception\0_Server_Host_Setup</pre>
+  </li>
+  <li>Run the automated container build command:
+    <pre>docker compose up -d --build</pre>
+  </li>
+  <li>Verify all 6 container services are online and healthy:
+    <pre>docker ps</pre>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container Name</th>
+      <th>Service Component</th>
+      <th>Port / URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>apml-connect-receptionist</code></td>
+      <td>Reception Desk Front-End</td>
+      <td><code>http://localhost:3001</code></td>
+    </tr>
+    <tr>
+      <td><code>apml-connect-doctor</code></td>
+      <td>Doctor Cabinet EMR Workstation</td>
+      <td><code>http://localhost:3002</code></td>
+    </tr>
+    <tr>
+      <td><code>apml-connect-pharmacy</code></td>
+      <td>Pharmacy Counter Desk</td>
+      <td><code>http://localhost:3003</code></td>
+    </tr>
+    <tr>
+      <td><code>apml-connect-backend</code></td>
+      <td>Node.js API & WebSockets</td>
+      <td><code>http://localhost:5005</code></td>
+    </tr>
+    <tr>
+      <td><code>apml-connect-db</code></td>
+      <td>PostgreSQL 15 Database</td>
+      <td>Port <code>5432</code></td>
+    </tr>
+    <tr>
+      <td><code>apml-connect-redis</code></td>
+      <td>Redis 7 Memory Cache</td>
+      <td>Port <code>6379</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Phase 4: Workstation Launchers & Wi-Fi Client Connection</h2>
+
+<h3>1. On the Central Server Computer:</h3>
+<p>Double-click the desktop / root launcher icons or open direct URLs in your web browser:</p>
+<ul>
+  <li><strong>Doctor Cabinet</strong>: Double click <code>Launch Doctor Cabinet.exe</code> or open <code>http://localhost:3002</code></li>
+  <li><strong>Reception Desk</strong>: Double click <code>Launch Receptionist.exe</code> or open <code>http://localhost:3001</code></li>
+  <li><strong>Pharmacy Counter</strong>: Double click <code>Launch Pharmacy Counter.exe</code> or open <code>http://localhost:3003</code></li>
+</ul>
+
+<h3>2. On Other Laptops / iPads / Phones over Local Wi-Fi:</h3>
+<ol>
+  <li>Find the Host IP address by running <code>ipconfig</code> in terminal (e.g. <code>192.168.1.5</code>).</li>
+  <li>Open browser on any client device and go to:
+    <ul>
+      <li><strong>Doctor Workstation</strong>: <code>http://&lt;HOST_IP&gt;:3002/dashboard/doctor</code></li>
+      <li><strong>Reception Desk</strong>: <code>http://&lt;HOST_IP&gt;:3001/dashboard/reception</code></li>
+      <li><strong>Pharmacy Desk</strong>: <code>http://&lt;HOST_IP&gt;:3003/dashboard/pharmacy</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h2>Phase 5: Default User Credentials</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Workstation Role</th>
+      <th>Default Email</th>
+      <th>Default Password</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Doctor Cabinet</td>
+      <td><code>doctor@clinic.com</code></td>
+      <td><code>123</code></td>
+    </tr>
+    <tr>
+      <td>Reception Front Desk</td>
+      <td><code>receptionist@clinic.com</code></td>
+      <td><code>123</code></td>
+    </tr>
+    <tr>
+      <td>Pharmacy Counter</td>
+      <td><code>pharmacy@clinic.com</code></td>
+      <td><code>123</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Phase 6: Daily Maintenance Commands</h2>
+<ul>
+  <li><strong>Start Server Stack</strong>: <code>docker compose up -d</code></li>
+  <li><strong>Stop Server Stack</strong>: <code>docker compose stop</code></li>
+  <li><strong>View Server Logs</strong>: <code>docker compose logs -f</code></li>
+  <li><strong>Hard Refresh Browser Cache</strong>: Press <code>Ctrl + Shift + R</code></li>
+</ul>
+
+<div class="footer">
+  APML Connect Pro &copy; 2026 SaaS Healthcare Platform &middot; Confidential Installation Document
+</div>
+
+</body>
+</html>

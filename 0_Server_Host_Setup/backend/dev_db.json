@@ -1,0 +1,542 @@
+{
+  "clinicStatus": "Online",
+  "queue": [
+    {
+      "token": "A-101",
+      "name": "Rahul Kumar",
+      "age": "34",
+      "gender": "Male",
+      "doctor": "Dr. Sarah Jenkins",
+      "status": "IN_CONSULTATION",
+      "waitTime": 10,
+      "priority": "URGENT",
+      "time": "10:15 AM",
+      "type": "Walk-In Consultation"
+    },
+    {
+      "token": "A-102",
+      "name": "Priya Sharma",
+      "age": "28",
+      "gender": "Female",
+      "doctor": "Dr. Sarah Jenkins",
+      "status": "WAITING",
+      "waitTime": 20,
+      "priority": "NORMAL",
+      "time": "10:30 AM",
+      "type": "Follow-Up"
+    },
+    {
+      "token": "A-103",
+      "name": "Amit Patel",
+      "age": "45",
+      "gender": "Male",
+      "doctor": "Dr. Sarah Jenkins",
+      "status": "WAITING",
+      "waitTime": 30,
+      "priority": "NORMAL",
+      "time": "10:45 AM",
+      "type": "New Consultation"
+    },
+    {
+      "token": "TK-905",
+      "name": "Ananya Sen",
+      "age": "29",
+      "gender": "Female",
+      "doctor": "Dr. Sarah Jenkins",
+      "status": "WAITING",
+      "waitTime": 5,
+      "priority": "NORMAL",
+      "time": "11:00 AM",
+      "type": "Consultation"
+    },
+    {
+      "token": "TK-906",
+      "name": "Devendra Singh",
+      "age": "41",
+      "gender": "Male",
+      "doctor": "Dr. Sarah Jenkins",
+      "status": "WAITING",
+      "waitTime": 15,
+      "priority": "NORMAL",
+      "time": "11:15 AM",
+      "type": "Follow-Up"
+    },
+    {
+      "token": "A267",
+      "name": "raju ",
+      "age": "35",
+      "gender": "Male",
+      "doctor": "Dr. Sharma",
+      "status": "COMPLETED",
+      "waitTime": 50,
+      "priority": "NORMAL",
+      "time": "10:00 AM",
+      "type": "Cardiology"
+    }
+  ],
+  "documents": [
+    {
+      "name": "Prescription - raju ",
+      "patient": "raju ",
+      "type": "Prescription",
+      "format": "PDF",
+      "size": "0.7 MB",
+      "details": {
+        "symptoms": "",
+        "diagnosis": "",
+        "meds": [],
+        "adviceList": []
+      },
+      "id": "DOC263",
+      "date": "2026-08-02"
+    },
+    {
+      "name": "Prescription - raju ",
+      "patient": "raju ",
+      "type": "Prescription",
+      "format": "PDF",
+      "size": "0.7 MB",
+      "details": {
+        "symptoms": "Sneezing, watery rhinorrhea, nasal congestion, itchy eyes",
+        "diagnosis": "Allergic Rhinitis (ICD J30.9)",
+        "meds": [
+          {
+            "name": "Tab. Montelukast + Levocetirizine",
+            "dose": "10mg/5mg",
+            "freq": "0-0-1",
+            "dur": "10 days"
+          },
+          {
+            "name": "Fluticasone Nasal Spray",
+            "dose": "1 spray per nostril",
+            "freq": "1-0-1",
+            "dur": "14 days"
+          }
+        ],
+        "adviceList": [
+          "Avoid allergen exposure (dust, pollen)",
+          "Steam inhalation twice daily",
+          "Saline nasal rinses"
+        ]
+      },
+      "id": "DOC169",
+      "date": "2026-08-02"
+    }
+  ],
+  "invoices": [
+    {
+      "patient": "raju ",
+      "doctor": "Dr. Sharma",
+      "amount": 500,
+      "status": "UNPAID",
+      "method": "—",
+      "id": "INV5934",
+      "date": "2026-08-02"
+    },
+    {
+      "patient": "raju ",
+      "doctor": "Dr. Sharma",
+      "amount": 500,
+      "status": "PAID",
+      "method": "NetBanking",
+      "id": "INV5734",
+      "date": "2026-08-02"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1785779648384,
+      "icon": "🛡️",
+      "title": "Insurance Claim Submitted",
+      "desc": "Claim of ₹100000 filed for SARAH.",
+      "time": "Just now",
+      "read": false,
+      "category": "insurance"
+    },
+    {
+      "id": 1785746470625,
+      "icon": "🩺",
+      "title": "Queue Status Update",
+      "desc": "Rahul Kumar status updated to IN_CONSULTATION.",
+      "time": "Just now",
+      "read": false,
+      "category": "queue"
+    },
+    {
+      "id": 1785657221576,
+      "icon": "✅",
+      "title": "Queue Status Update",
+      "desc": "raju  status updated to COMPLETED.",
+      "time": "Just now",
+      "read": false,
+      "category": "queue"
+    },
+    {
+      "id": 1785657221575,
+      "icon": "💳",
+      "title": "Invoice Issued",
+      "desc": "Total bill of ₹500 created for raju .",
+      "time": "Just now",
+      "read": false,
+      "category": "billing"
+    },
+    {
+      "id": 1785657221574,
+      "icon": "📁",
+      "title": "New Document Generated",
+      "desc": "Prescription compiled for raju .",
+      "time": "Just now",
+      "read": false,
+      "category": "doctor"
+    },
+    {
+      "id": 1785657179491,
+      "icon": "🩺",
+      "title": "Queue Status Update",
+      "desc": "raju  status updated to IN_CONSULTATION.",
+      "time": "Just now",
+      "read": false,
+      "category": "queue"
+    },
+    {
+      "id": 1785657086483,
+      "icon": "✅",
+      "title": "Invoice Paid",
+      "desc": "₹500 received from raju  via NetBanking",
+      "time": "Just now",
+      "read": false,
+      "category": "billing"
+    },
+    {
+      "id": 1785657050944,
+      "icon": "✅",
+      "title": "Queue Status Update",
+      "desc": "raju  status updated to COMPLETED.",
+      "time": "Just now",
+      "read": false,
+      "category": "queue"
+    },
+    {
+      "id": 1785657050943,
+      "icon": "💳",
+      "title": "Invoice Issued",
+      "desc": "Total bill of ₹500 created for raju .",
+      "time": "Just now",
+      "read": false,
+      "category": "billing"
+    },
+    {
+      "id": 1785657050942,
+      "icon": "📁",
+      "title": "New Document Generated",
+      "desc": "Prescription compiled for raju .",
+      "time": "Just now",
+      "read": false,
+      "category": "doctor"
+    },
+    {
+      "id": 1785656980717,
+      "icon": "🩺",
+      "title": "Queue Status Update",
+      "desc": "raju  status updated to IN_CONSULTATION.",
+      "time": "Just now",
+      "read": false,
+      "category": "queue"
+    },
+    {
+      "id": 1785656911280,
+      "icon": "🎫",
+      "title": "Token A267 Generated",
+      "desc": "Patient raju  checked into OPD list.",
+      "time": "Just now",
+      "read": false,
+      "category": "queue"
+    },
+    {
+      "id": 1785656886223,
+      "icon": "📅",
+      "title": "Appointment Booked",
+      "desc": "raju  scheduled with Dr. Sharma on 2026-08-02.",
+      "time": "Just now",
+      "read": false,
+      "category": "appointment"
+    },
+    {
+      "id": 1785656864575,
+      "icon": "👤",
+      "title": "Patient Registered",
+      "desc": "raju  registered with MRN MRN-20243251.",
+      "time": "Just now",
+      "read": false,
+      "category": "system"
+    },
+    {
+      "id": 1785656267719,
+      "icon": "🟢",
+      "title": "Clinic Status Changed",
+      "desc": "Clinic operations set to Online.",
+      "time": "Just now",
+      "read": false,
+      "category": "system"
+    }
+  ],
+  "broadcastDelay": null,
+  "appointments": [
+    {
+      "patient": "raju ",
+      "doctor": "Dr. Sharma",
+      "date": "2026-08-02",
+      "time": "10:00 AM",
+      "type": "Cardiology",
+      "status": "CHECKED_IN",
+      "payStatus": "PAID",
+      "id": "APT405",
+      "token": "A267"
+    }
+  ],
+  "claims": [
+    {
+      "patient": "SARAH",
+      "provider": "Star Health Insurance",
+      "policy": "696969",
+      "invoiceId": "INV-6115",
+      "amount": 100000,
+      "approved": null,
+      "status": "SUBMITTED",
+      "id": "CL170",
+      "date": "2026-08-03"
+    }
+  ],
+  "labBookings": [
+    {
+      "id": "LAB-905",
+      "patientName": "Ananya Sen",
+      "token": "TK-905",
+      "testName": "Complete Blood Count (CBC)",
+      "date": "2026-08-02",
+      "status": "PENDING",
+      "amount": 400
+    },
+    {
+      "id": "LAB-906",
+      "patientName": "Devendra Singh",
+      "token": "TK-906",
+      "testName": "Lipid Profile & ECG",
+      "date": "2026-08-02",
+      "status": "PENDING",
+      "amount": 950
+    }
+  ],
+  "patients": [
+    {
+      "name": "raju ",
+      "age": 28,
+      "gender": "Male",
+      "phone": "9988110022",
+      "blood": "A+",
+      "status": "Active",
+      "lastVisit": "2026-08-02",
+      "insurance": false,
+      "id": "P815",
+      "mrn": "MRN-20243251"
+    },
+    {
+      "id": "P101",
+      "mrn": "MRN-8801",
+      "name": "Rahul Kumar",
+      "age": 34,
+      "gender": "Male",
+      "phone": "+91 9876543210",
+      "blood": "O+",
+      "status": "Active",
+      "lastVisit": "2026-07-20",
+      "insurance": true
+    },
+    {
+      "id": "P102",
+      "mrn": "MRN-8802",
+      "name": "Priya Sharma",
+      "age": 28,
+      "gender": "Female",
+      "phone": "+91 9876543211",
+      "blood": "B+",
+      "status": "Active",
+      "lastVisit": "2026-07-15",
+      "insurance": false
+    },
+    {
+      "id": "P103",
+      "mrn": "MRN-8803",
+      "name": "Amit Patel",
+      "age": 45,
+      "gender": "Male",
+      "phone": "+91 9876543212",
+      "blood": "A+",
+      "status": "Active",
+      "lastVisit": "2026-07-22",
+      "insurance": true
+    },
+    {
+      "id": "P999",
+      "mrn": "MRN-9999",
+      "name": "Vikram Malhotra",
+      "age": 38,
+      "gender": "Male",
+      "phone": "+91 9998877665",
+      "blood": "AB+",
+      "status": "Active",
+      "lastVisit": "2026-08-02",
+      "insurance": true
+    },
+    {
+      "id": "P105",
+      "mrn": "MRN-905",
+      "name": "Ananya Sen",
+      "age": 29,
+      "gender": "Female",
+      "phone": "+91 9811223344",
+      "blood": "O+",
+      "status": "Active",
+      "lastVisit": "2026-08-02",
+      "insurance": true
+    },
+    {
+      "id": "P106",
+      "mrn": "MRN-906",
+      "name": "Devendra Singh",
+      "age": 41,
+      "gender": "Male",
+      "phone": "+91 9776655443",
+      "blood": "B+",
+      "status": "Active",
+      "lastVisit": "2026-08-02",
+      "insurance": true
+    }
+  ],
+  "settings": {
+    "notificationsEnabled": true,
+    "smsTemplatesEnabled": true,
+    "clinicAddress": "12, Green Park Avenue, Metro Hub",
+    "clinicPhone": "+91 9988221100"
+  },
+  "stocks": [
+    {
+      "id": "STK001",
+      "name": "Tab. Paracetamol 650mg",
+      "qty": 425,
+      "min": 100,
+      "batch": "BAT-2026A",
+      "expiryDays": 90,
+      "outOfStock": false
+    },
+    {
+      "id": "STK002",
+      "name": "Tab. Telmisartan 40mg",
+      "qty": 85,
+      "min": 100,
+      "batch": "BAT-2026B",
+      "expiryDays": 30,
+      "outOfStock": false
+    },
+    {
+      "id": "STK003",
+      "name": "Tab. Amlodipine 5mg",
+      "qty": 210,
+      "min": 50,
+      "batch": "BAT-2026C",
+      "expiryDays": 60,
+      "outOfStock": false
+    },
+    {
+      "id": "STK004",
+      "name": "Syp. Ascoril DX 100ml",
+      "qty": 15,
+      "min": 20,
+      "batch": "BAT-2026D",
+      "expiryDays": 30,
+      "outOfStock": false
+    },
+    {
+      "id": "STK005",
+      "name": "Tab. Vitamin C 500mg",
+      "qty": 620,
+      "min": 100,
+      "batch": "BAT-2026E",
+      "expiryDays": 90,
+      "outOfStock": false
+    },
+    {
+      "id": "STK006",
+      "name": "Tab. Amoxicillin 500mg",
+      "qty": 140,
+      "min": 50,
+      "batch": "BAT-2026F",
+      "expiryDays": 60,
+      "outOfStock": false
+    }
+  ],
+  "billingCatalog": [
+    {
+      "id": "BC001",
+      "name": "First Consultation",
+      "price": 500,
+      "category": "Consultation Fees"
+    },
+    {
+      "id": "BC002",
+      "name": "Follow-Up Consultation",
+      "price": 300,
+      "category": "Consultation Fees"
+    },
+    {
+      "id": "BC003",
+      "name": "Emergency Consultation",
+      "price": 800,
+      "category": "Consultation Fees"
+    },
+    {
+      "id": "BC004",
+      "name": "Wound Dressing",
+      "price": 250,
+      "category": "Clinic Procedures"
+    },
+    {
+      "id": "BC005",
+      "name": "ECG (Electrocardiogram)",
+      "price": 350,
+      "category": "In-House Diagnostics"
+    },
+    {
+      "id": "BC006",
+      "name": "Blood Test (CBC)",
+      "price": 400,
+      "category": "In-House Diagnostics"
+    },
+    {
+      "id": "BC007",
+      "name": "X-Ray Chest",
+      "price": 600,
+      "category": "In-House Diagnostics"
+    }
+  ],
+  "accounts": [
+    {
+      "role": "receptionist",
+      "email": "receptionist@clinic.com",
+      "name": "Reception Front Desk",
+      "password": "123"
+    },
+    {
+      "role": "doctor",
+      "email": "doctor@clinic.com",
+      "name": "Dr. Rinkal Gajjar",
+      "password": "123"
+    },
+    {
+      "role": "pharmacy",
+      "email": "pharmacy@clinic.com",
+      "name": "Pharmacy Counter",
+      "password": "123"
+    }
+  ]
+}

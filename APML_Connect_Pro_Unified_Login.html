@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APML Connect Pro - Unified Healthcare Workstation Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* White & Royal Blue Design System */
+:root {
+  --primary: #2563eb; 
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-border: #bfdbfe;
+  --bg-page: #f8fafc;
+  --panel-bg: #ffffff;
+  --card-bg: #ffffff;
+  --hero-bg: linear-gradient(145deg, #1e3a8a 0%, #1e293b 100%);
+  --hero-text: #ffffff;
+  --hero-sub: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --input-bg: #f8fafc;
+  --danger: #ef4444;
+  --danger-bg: #fef2f2;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+  --primary: #3b82f6; 
+  --primary-hover: #2563eb;
+  --primary-light: rgba(59, 130, 246, 0.15);
+  --primary-border: #1d4ed8;
+  --bg-page: #0f172a;
+  --panel-bg: #1e293b;
+  --card-bg: #1e293b;
+  --hero-bg: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+  --hero-text: #ffffff;
+  --hero-sub: #94a3b8;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  --input-bg: #0f172a;
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; 
+  background-color: var(--bg-page); 
+  color: var(--text-primary); 
+  min-height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Split-Screen Container */
+.app-viewport {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  background: var(--bg-page);
+}
+
+/* Left Hero Brand Panel */
+.hero-panel {
+  flex: 1.1;
+  background: var(--hero-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 60px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.hero-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hero-brand {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-badge-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--hero-sub);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin: 40px 0;
+  max-width: 520px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #60a5fa;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #60a5fa;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.hero-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--hero-sub);
+  margin-bottom: 32px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #f1f5f9;
+  font-weight: 500;
+}
+
+.feature-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero-footer {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.telemetry-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 14px 16px;
+  border-radius: 12px;
+}
+
+.telemetry-label {
+  font-size: 11px;
+  color: var(--hero-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.telemetry-val {
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Right Form Auth Panel */
+.auth-panel {
+  flex: 0.9;
+  background: var(--panel-bg);
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Segmented Control Role Tabs */
+.segmented-control {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  padding: 4px;
+  border-radius: 12px;
+  display: flex;
+  margin-bottom: 32px;
+  gap: 4px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.tab-btn.active {
+  color: #ffffff;
+  background: var(--primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Form Styling */
+.auth-header {
+  margin-bottom: 28px;
+}
+
+.role-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.4px;
+  margin-bottom: 6px;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  color: var(--text-primary);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.remember-me input {
+  accent-color: var(--primary);
+}
+
+.support-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.support-link:hover {
+  text-decoration: underline;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 13px 20px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.btn-submit:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.error-banner {
+  background: var(--danger-bg);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--danger);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+/* Host IP Config footer bar */
+.host-config-panel {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.host-config-panel input {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  width: 150px;
+  outline: none;
+  font-family: monospace;
+}
+
+.host-config-panel input:focus {
+  border-color: var(--primary);
+}
+
+@media (max-width: 960px) {
+  .app-viewport { flex-direction: column; }
+  .hero-panel { padding: 40px 24px; border-right: none; border-bottom: 1px solid var(--border-color); }
+  .auth-panel { padding: 40px 24px; }
+  .hero-footer { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="app-viewport" id="portalContainer">
+  <!-- Left Side: Professional Blue Product Showcase -->
+  <div class="hero-panel">
+    <div class="hero-brand">
+      <div class="brand-badge-icon" id="brandIcon">✚</div>
+      <div>
+        <div class="brand-title">APML Connect Pro</div>
+        <div class="brand-subtitle">Clinical Infrastructure Suite</div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>Local Mesh Host • Connected</span>
+      </div>
+
+      <h1 class="hero-title">Enterprise Healthcare Workstation</h1>
+      <p class="hero-description">
+        Secure real-time clinical platform connecting Receptionist Patient Intake, Doctor EHR Consultation Cabinets, and Dispensing Pharmacy Inventory.
+      </p>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Real-time patient queue & prescription dispatching</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>HIPAA & AES-256 encrypted patient record storage</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Automatic local host sync & offline network resilience</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-footer">
+      <div class="telemetry-card">
+        <div class="telemetry-label">Gateway Host</div>
+        <div class="telemetry-val" id="telemetryHost">127.0.0.1:5000</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="telemetry-label">Security Protocol</div>
+        <div class="telemetry-val">TLS / AES-256</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="telemetry-label">Active Modules</div>
+        <div class="telemetry-val">3 Desks Ready</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: White & Blue Form Authentication -->
+  <div class="auth-panel">
+    <button class="theme-toggle-btn" onclick="toggleTheme()">
+      <span id="themeIcon">🌙</span>
+      <span id="themeLabel">Dark Mode</span>
+    </button>
+
+    <div class="auth-wrapper">
+
+      <!-- Segmented Control Role Tabs -->
+      <div class="segmented-control">
+        <button class="tab-btn active" id="tab-reception" onclick="switchRole('reception')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5"></path></svg>
+          Reception
+        </button>
+        <button class="tab-btn" id="tab-doctor" onclick="switchRole('doctor')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+          Doctor
+        </button>
+        <button class="tab-btn" id="tab-pharmacy" onclick="switchRole('pharmacy')">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L5.594 15.12a2 2 0 00-1.815 2.502l.608 2.432a2 2 0 001.94 1.516h11.346a2 2 0 001.94-1.516l.608-2.432a2 2 0 00-.785-2.194z"></path></svg>
+          Pharmacy
+        </button>
+      </div>
+
+      <div class="auth-header">
+        <div class="role-badge" id="roleBadge">RECEPTIONIST WORKSTATION</div>
+        <h2 class="auth-title" id="roleTitle">Receptionist Portal</h2>
+        <p class="auth-subtitle" id="roleDesc">Sign in to manage patient check-ins, queue rosters & billing records.</p>
+      </div>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label" id="usernameLabel">Staff Email / ID</label>
+          <div class="input-container">
+            <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            <input type="text" id="username" class="form-control" placeholder="e.g. receptionist@clinic.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-container">
+            <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            <input type="password" id="password" class="form-control" placeholder="••••••••" value="12345" required>
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility()" aria-label="Toggle Password Visibility">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <label class="remember-me">
+            <input type="checkbox" checked>
+            <span>Remember workstation</span>
+          </label>
+          <a href="#" class="support-link" onclick="alert('Please contact your IT System Administrator for credential resets.')">Support Help</a>
+        </div>
+
+        <div id="loginError" class="error-banner">
+          Invalid credentials! Password must be at least 4 characters.
+        </div>
+
+        <button type="submit" class="btn-submit" id="loginBtn">
+          <span>Launch Reception Desk</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+      </form>
+
+      <div class="host-config-panel">
+        <span>Server Host IP:</span>
+        <input type="text" id="serverIp" value="localhost" placeholder="e.g. 192.168.1.7" onchange="saveIp()">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Consistent White & Blue theme across all roles
+  const roles = {
+    reception: {
+      title: 'Receptionist Desk',
+      desc: 'Sign in to manage patient check-ins, queue rosters & billing records.',
+      badge: 'RECEPTIONIST WORKSTATION',
+      icon: '🏥',
+      email: 'receptionist@clinic.com',
+      port: 3001,
+      route: '/dashboard/reception',
+      btnText: 'Launch Reception Desk'
+    },
+    doctor: {
+      title: 'Doctor Cabinet',
+      desc: 'Sign in to access EHR records, patient vitals & AI consultation notes.',
+      badge: 'DOCTOR CONSULTATION CONSOLE',
+      icon: '🩺',
+      email: 'doctor@clinic.com',
+      port: 3002,
+      route: '/dashboard/doctor',
+      btnText: 'Launch Doctor Cabinet'
+    },
+    pharmacy: {
+      title: 'Pharmacy Counter',
+      desc: 'Sign in for prescription fulfillment, inventory stock & dispensing.',
+      badge: 'PHARMACY DISPENSING DESK',
+      icon: '💊',
+      email: 'pharmacy@clinic.com',
+      port: 3003,
+      route: '/dashboard/pharmacy',
+      btnText: 'Launch Pharmacy Counter'
+    }
+  };
+
+  let activeRole = 'reception';
+
+  window.onload = function() {
+    // Theme preference initialization
+    const savedTheme = localStorage.getItem('apml_theme') || 'light';
+    setTheme(savedTheme);
+
+    const savedIp = localStorage.getItem('apml_host_ip');
+    if (savedIp) {
+      document.getElementById('serverIp').value = savedIp;
+      document.getElementById('telemetryHost').innerText = savedIp + ':5000';
+    }
+    
+    const params = new URLSearchParams(window.location.search);
+    const roleParam = params.get('role');
+    if (roleParam && roles[roleParam]) {
+      switchRole(roleParam);
+    } else {
+      switchRole('reception');
+    }
+  };
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('apml_theme', theme);
+    const icon = document.getElementById('themeIcon');
+    const label = document.getElementById('themeLabel');
+    if (theme === 'dark') {
+      icon.innerText = '☀️';
+      label.innerText = 'Light Mode';
+    } else {
+      icon.innerText = '🌙';
+      label.innerText = 'Dark Mode';
+    }
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  function saveIp() {
+    const ip = document.getElementById('serverIp').value.trim() || 'localhost';
+    localStorage.setItem('apml_host_ip', ip);
+    document.getElementById('telemetryHost').innerText = ip + ':5000';
+  }
+
+  function togglePasswordVisibility() {
+    const pwd = document.getElementById('password');
+    pwd.type = pwd.type === 'password' ? 'text' : 'password';
+  }
+
+  function switchRole(roleKey) {
+    if (!roles[roleKey]) return;
+    activeRole = roleKey;
+    const r = roles[roleKey];
+
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('tab-' + roleKey).classList.add('active');
+
+    document.getElementById('brandIcon').innerText = r.icon;
+    document.getElementById('roleBadge').innerText = r.badge;
+    document.getElementById('roleTitle').innerText = r.title;
+    document.getElementById('roleDesc').innerText = r.desc;
+    document.getElementById('username').value = r.email;
+    document.getElementById('loginBtn').querySelector('span').innerText = r.btnText;
+
+    document.getElementById('loginError').style.display = 'none';
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    saveIp();
+    const r = roles[activeRole];
+    const password = document.getElementById('password').value;
+    const errorDiv = document.getElementById('loginError');
+
+    if (password === '12345' || password.length >= 4) {
+      errorDiv.style.display = 'none';
+      let host = document.getElementById('serverIp').value.trim() || 'localhost';
+      // Offline fallback: if network is offline or host IP is unroutable offline, fallback to localhost
+      if (!navigator.onLine && host !== '127.0.0.1') {
+        host = 'localhost';
+      }
+      const targetUrl = `http://${host}:${r.port}${r.route}?auth=true`;
+      window.location.href = targetUrl;
+    } else {
+      errorDiv.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>

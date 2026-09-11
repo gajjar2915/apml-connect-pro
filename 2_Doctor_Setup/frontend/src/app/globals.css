@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* White & Royal Blue Design System */
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 255, 255, 255;
+  --primary-blue: #2563eb;
+  --primary-blue-hover: #1d4ed8;
+  --primary-blue-light: #eff6ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 248, 250, 252;
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 30, 41, 59;
+    --primary-blue: #3b82f6;
+    --primary-blue-hover: #2563eb;
+    --primary-blue-light: rgba(59, 130, 246, 0.15);
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--background-start-rgb);
+  min-height: 100vh;
+}
+
+/* Global Dark Mode Overrides - Deep Slate Blue */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+html.dark .bg-slate-50, 
+html.dark [class*="bg-slate-100/50"], 
+html.dark main {
+  background-color: #0f172a !important;
+}
+
+html.dark .bg-white,
+html.dark header,
+html.dark aside,
+html.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark span.text-slate-800 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-750,
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-500,
+html.dark .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+html.dark border,
+html.dark .border-slate-200,
+html.dark .border-slate-100,
+html.dark [class*="border-slate-700/50"],
+html.dark div,
+html.dark header,
+html.dark aside,
+html.dark table,
+html.dark th,
+html.dark td {
+  border-color: #334155 !important;
+}
+
+html.dark input, 
+html.dark select, 
+html.dark textarea {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #475569 !important;
+}
+
+html.dark input::placeholder {
+  color: #64748b !important;
+}
+
+html.dark table {
+  background-color: #1e293b !important;
+}
+
+html.dark th {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+html.dark tr:hover,
+html.dark .hover\:bg-slate-50:hover {
+  background-color: #334155 !important;
+}
+
+/* Royal Blue Utility & Accent Overrides for All Modules */
+.bg-emerald-50, .bg-teal-50, .bg-purple-50, .bg-violet-50 {
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border-color: #bfdbfe !important;
+}
+
+html.dark .bg-emerald-50, html.dark .bg-teal-50, html.dark .bg-purple-50, html.dark .bg-violet-50 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.text-emerald-800, .text-emerald-600, .text-teal-600, .text-purple-600 {
+  color: #2563eb !important;
+}
+
+html.dark .text-emerald-800, html.dark .text-emerald-600, html.dark .text-teal-600, html.dark .text-purple-600 {
+  color: #60a5fa !important;
+}
+
+.bg-emerald-500, .bg-emerald-600, .bg-teal-600, .bg-purple-600 {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.bg-emerald-500:hover, .bg-emerald-600:hover, .bg-teal-600:hover, .bg-purple-600:hover {
+  background-color: #1d4ed8 !important;
+}
+
+html.dark .bg-emerald-500, html.dark .bg-emerald-600, html.dark .bg-teal-600, html.dark .bg-purple-600 {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+html.dark .bg-emerald-500:hover, html.dark .bg-emerald-600:hover, html.dark .bg-teal-600:hover, html.dark .bg-purple-600:hover {
+  background-color: #2563eb !important;
+}
+
+/* Refined Clean Card Styles */
+.liquid-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.05) !important;
+  border-radius: 16px !important;
+  transition: all 0.25s ease !important;
+}
+
+html.dark .liquid-card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.liquid-card:hover {
+  border-color: #2563eb !important;
+  transform: translateY(-2px) !important;
+}
+
+.liquid-btn-primary {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+}
+
+.liquid-btn-primary:hover {
+  background: #1d4ed8 !important;
+  transform: translateY(-1px) !important;
+}
+
+.liquid-input {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+}
+
+html.dark .liquid-input {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+.liquid-input:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2) !important;
+  outline: none !important;
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Mobile Setup - APML Connect Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --bg-page: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --input-bg: #f8fafc;
+            --badge-bg: #eff6ff;
+            --badge-text: #1d4ed8;
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-light: rgba(59, 130, 246, 0.15);
+            --bg-page: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: #334155;
+            --input-bg: #0f172a;
+            --badge-bg: rgba(59, 130, 246, 0.15);
+            --badge-text: #60a5fa;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .back-nav {
+            width: 100%;
+            max-width: 520px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-link:hover { color: var(--primary); }
+
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 520px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .badge-pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--badge-text);
+            background: var(--badge-bg);
+            border: 1px solid var(--border-color);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: monospace;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .qr-section {
+            margin-top: 28px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .qr-container {
+            background: #ffffff;
+            padding: 14px;
+            border-radius: 14px;
+            display: inline-block;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .qr-container img {
+            display: block;
+            width: 180px;
+            height: 180px;
+        }
+
+        .link-text {
+            word-break: break-all;
+            font-family: monospace;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .steps-box {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .steps-title {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .steps-box ol {
+            padding-left: 20px;
+        }
+
+        .steps-box li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="back-nav">
+        <a href="../APML_Connect_Pro_Liquid_Launcher.html" class="back-link">← Return to Hub</a>
+        <button class="theme-toggle-btn" onclick="toggleTheme()">
+            <span id="themeIcon">🌙</span>
+            <span id="themeLabel">Dark Mode</span>
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="header">
+            <div class="badge-pill">TABLET & MOBILE CLINIC PAIRING</div>
+            <h1>Doctor Cabinet Tablet Setup</h1>
+            <p>Access EHR patient records, vitals, and digital prescriptions on your tablet or mobile device.</p>
+        </div>
+        
+        <div class="form-group">
+            <label>Central Gateway Server Host IP</label>
+            <input type="text" id="serverIp" value="192.168.1.7" placeholder="e.g. 192.168.1.7" onchange="generateQR()">
+        </div>
+        <button class="btn" onclick="generateQR()">Update QR Code & Target</button>
+
+        <div class="qr-section">
+            <div class="qr-container">
+                <img id="qrCodeImg" src="" alt="QR Code">
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+                Scan with tablet or mobile camera connected to clinic Wi-Fi:
+            </p>
+            <div class="link-text" id="linkText"></div>
+
+            <div class="steps-box">
+                <div class="steps-title">Workstation Pairing Instructions</div>
+                <ol>
+                    <li>Scan the QR code above or open the URL in Chrome on your tablet.</li>
+                    <li>Log in with your Doctor Cabinet credentials.</li>
+                    <li>Tap the Chrome menu (top-right 3 dots) and select <strong>"Add to Home Screen"</strong>.</li>
+                    <li>Use Doctor Console directly from your tablet home screen.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('apml_theme') || 'light';
+            setTheme(savedTheme);
+
+            const savedIp = localStorage.getItem('apml_host_ip') || localStorage.getItem('doctor_server_ip') || '192.168.1.7';
+            document.getElementById('serverIp').value = savedIp;
+            generateQR();
+        };
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('apml_theme', theme);
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('themeLabel');
+            if (theme === 'dark') {
+                icon.innerText = '☀️';
+                label.innerText = 'Light Mode';
+            } else {
+                icon.innerText = '🌙';
+                label.innerText = 'Dark Mode';
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
+        function generateQR() {
+            const ip = document.getElementById('serverIp').value.trim() || '192.168.1.7';
+            localStorage.setItem('apml_host_ip', ip);
+            localStorage.setItem('doctor_server_ip', ip);
+            const targetUrl = 'http://' + ip + ':3002/dashboard/doctor';
+            
+            const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(targetUrl);
+            
+            document.getElementById('qrCodeImg').src = qrUrl;
+            document.getElementById('linkText').innerText = targetUrl;
+        }
+    </script>
+</body>
+</html>

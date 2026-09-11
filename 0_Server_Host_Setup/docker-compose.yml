@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: apml-connect-db
+    environment:
+      POSTGRES_USER: apml_connect_admin
+      POSTGRES_PASSWORD: strong_postgres_password_2026
+      POSTGRES_DB: apml_connect_prod
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U apml_connect_admin -d apml_connect_prod"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: apml-connect-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: apml-connect-backend
+    ports:
+      - "5005:5000"
+    environment:
+      - PORT=5000
+      - DATABASE_URL=postgresql://apml_connect_admin:strong_postgres_password_2026@postgres:5432/apml_connect_prod?schema=public
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=super_secure_jwt_secret_token_key_2026
+      - OPENAI_API_KEY=mock_key_or_replace_with_actual
+      - ENCRYPTION_KEY=32_character_hex_key_for_phi_encrypt
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  reception-frontend:
+    build:
+      context: ./../1_Receptionist_Setup/frontend
+      dockerfile: Dockerfile
+    container_name: apml-connect-receptionist
+    ports:
+      - "3001:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5005
+      - NEXTAUTH_SECRET=another_secure_nextauth_secret_2026
+    depends_on:
+      - backend
+
+  doctor-frontend:
+    build:
+      context: ./../2_Doctor_Setup/frontend
+      dockerfile: Dockerfile
+    container_name: apml-connect-doctor
+    ports:
+      - "3002:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5005
+      - NEXTAUTH_SECRET=another_secure_nextauth_secret_2026
+    depends_on:
+      - backend
+
+  pharmacy-frontend:
+    build:
+      context: ./../3_Pharmacy_Setup/frontend
+      dockerfile: Dockerfile
+    container_name: apml-connect-pharmacy
+    ports:
+      - "3003:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5005
+      - NEXTAUTH_SECRET=another_secure_nextauth_secret_2026
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  redisdata:
