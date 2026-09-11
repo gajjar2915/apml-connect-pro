@@ -51,3 +51,4 @@ __pycache__/
 
 # ===== Prisma =====
 prisma/migrations/
+.github/workflows/
